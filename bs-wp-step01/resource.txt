@@ -1,0 +1,5 @@
+new one: https://github.com/bline/bootstrap-webpack
+
+html template: https://github.com/ampedandwired/html-webpack-plugin/blob/master/docs/template-option.md
+
+got the loaders from here: https://medium.com/@victorleungtw/how-to-use-webpack-with-react-and-bootstrap-b94d33765970#.gr5bkipjt
