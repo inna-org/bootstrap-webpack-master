@@ -1,5 +1,8 @@
-require ('react');
-require('bootstrap-webpack!./../bootstrap.config.js');
+'use strict';
+// require ('react');
+import React from 'react';
+//require('bootstrap-webpack!./../bootstrap.config.js');
+import BootstrapJS from 'bootstrap-webpack!./../bootstrap.config.js';
 //require("css!./main.css"); cretaes error
 //require('./main.css'); file not found
 var $ = require('jquery');

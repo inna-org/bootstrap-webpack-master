@@ -2,6 +2,28 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+
+exports.babelES6 = function(PATHS) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: [/\.js$/, /\.es6$/, /\.jsx?$/],
+          loader: 'babel-loader',
+          exclude: [PATHS.nodemodules],
+          include: PATHS.app,
+          query:
+          {
+            presets:['react', 'es2015']
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+
 exports.clean = function(path) {
   console.log("--------------------------- clean - called");
   console.log("path = " + path);

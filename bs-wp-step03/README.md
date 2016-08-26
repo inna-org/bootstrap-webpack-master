@@ -1,3 +1,14 @@
+Changes
+> added parts.js exports.babelES6
+> added babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev
+
+Current State
+> Babel is working and I can use 'import' in app.js
+> Overriding bootstrap styles is still not working
+
+
+
+
 Reading - I'm mostly reading at this point. Here is what I'm looking at
 http://andrejgajdos.com/setting-up-webpack-for-es6-react-sass-and-bootstrap/
 His project

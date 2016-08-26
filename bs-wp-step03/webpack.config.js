@@ -11,7 +11,8 @@ const PATHS = {
   style: path.join(__dirname, 'app', 'main.css'),
   build: path.join(__dirname, 'build'),
   jquery: path.join(__dirname, 'node_modules/jquery/src', 'jquery.js'),
-  nodemodules: path.join(__dirname, "node_modules")
+  nodemodules: path.join(__dirname, "node_modules"),
+  libs: path.join(__dirname, 'libs')
 };
 
 ///home/user01/workspace/project-node-webpack/node_modules/bootstrap/dist/css
@@ -47,7 +48,12 @@ const common = {
       //title: 'Webpack demo'
       template: PATHS.app + '/index.html'
     })
-  ]
+  ],
+  // Important! Do not remove '', If you do, imports without
+  // an extension won't work anymore!
+  resolve: {
+    extensions: ['', '.json', '.js', '.jsx']
+  }
 };
 
 var config;
@@ -74,6 +80,7 @@ switch(process.env.npm_lifecycle_event) {
         'process.env.NODE_ENV',
         'production'
       ),
+      parts.babelES6(PATHS),
       parts.extractBundle({
         name: 'vendor',
         entries: ['react']
@@ -95,6 +102,7 @@ switch(process.env.npm_lifecycle_event) {
         },
 
       //parts.setupCSS(PATHS.style),
+      parts.babelES6(PATHS),
       parts.loadBootstrapJS(PATHS.bootstrapJS),
       parts.loadBootstrap(PATHS.bootstrapCSS),
       parts.extractCSS(PATHS.style),
