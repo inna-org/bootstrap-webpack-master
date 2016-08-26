@@ -14,23 +14,6 @@ const PATHS = {
   nodemodules: path.join(__dirname, "node_modules"),
   libs: path.join(__dirname, 'libs')
 };
-
-///home/user01/workspace/project-node-webpack/node_modules/bootstrap/dist/css
-//            /workspace/project-node-webpack/node_modules/bootstrap/dist/css
-
-
-console.log("--------------------------- webpack.config.js");
-//console.log("PATHS.app = " + PATHS.app);
-//console.log("PATHS.build = " + PATHS.build);
-//console.log("PATHS.style = " + PATHS.style);
-//console.log("PATHS.bootstrap = " + PATHS.bootstrap);
-//console.log("PATHS.jquery = " + PATHS.jquery);
-//console.log("config = " + config);
-//PATHS.app =
-///home/user01/workspace/project-node-webpack/node_modules/bootstrap/dist/css/
-///home/user01/workspace/project-node-webpack/app/main.css
-
-
 // Entry accepts a path or an object of entries.
 // We'll be using the latter form given it's
 // convenient with more complex configurations.
@@ -100,7 +83,6 @@ switch(process.env.npm_lifecycle_event) {
         {
           devtool: 'source-map'
         },
-
       //parts.setupCSS(PATHS.style),
       parts.babelES6(PATHS),
       parts.loadBootstrapJS(PATHS.bootstrapJS),
@@ -113,44 +95,6 @@ switch(process.env.npm_lifecycle_event) {
       })
     );
 }
-
-/*
-function listAllProperties(o) {
-	var objectToInspect;
-	var result = [];
-
-	for(objectToInspect = o; objectToInspect !== null; objectToInspect = Object.getPrototypeOf(objectToInspect)){
-      result = result.concat(Object.getOwnPropertyNames(objectToInspect));
-	}
-
-	return result;
-}
-
-function populateFunction(arr){
-    var ret = [];
-    function iterateThrough(obj,elt){
-        Object.keys(obj).forEach(function(curKey){
-            if(typeof obj[curKey]==='object'){
-                iterateThrough(obj[curKey],ul);
-            }
-            else{
-                result = result.concat(curKey)
-            }
-        });
-    }
-    iterateThrough(arr,mainContain);
-    return mainContain;
-}
-*/
-//console.log('** webpack.config.js - POST ************************************');
-//console.log("config = " + config["0"]);
-//var tmp = parts.setupCSS(PATHS.app);
-//console.log("tmp.host = " + tmp.host);
-//console.log("setupCSS = " + tmp.module.loaders[0].loaders);
-//var ret = listAllProperties(tmp);
-//var ret = populateFunction(ret);
-//console.log("ret = " + ret);
-//console.log('================================================================');
 
 // Run validator in quiet mode to avoid output in stats
 module.exports = validate(config, {

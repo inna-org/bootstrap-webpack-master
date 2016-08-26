@@ -22,11 +22,9 @@ exports.babelES6 = function(PATHS) {
   }
 }
 
-
-
 exports.clean = function(path) {
   console.log("--------------------------- clean - called");
-  console.log("path = " + path);
+  //console.log("path = " + path);
   // path = PATH.build
 
   return {
@@ -42,8 +40,8 @@ exports.clean = function(path) {
 
 exports.setFreeVariable = function(key, value) {
   console.log("--------------------------- setFreeVariable - called");
-  console.log("key = " + key);
-  console.log("value = " + value);
+  //console.log("key = " + key);
+  //console.log("value = " + value);
   // key = process.env.NODE_ENV
   // value = production
 
@@ -57,10 +55,9 @@ exports.setFreeVariable = function(key, value) {
   };
 }
 
-
 exports.extractBundle = function(options) {
   console.log("--------------------------- extractBundle - called");
-  console.log("options = " + options);
+  //console.log("options = " + options);
   /* options = {
                   name:'vendor',
                   entries: ['react']
@@ -112,7 +109,7 @@ exports.minify = function() {
 
 exports.loadBootstrapJS = function (paths) {
   console.log("--------------------------- loadBootstrapJS - called");
-  console.log("loadBootstrapJS.paths = " + paths);
+  //console.log("loadBootstrapJS.paths = " + paths);
   return {
     module: {
       loaders: [
@@ -150,7 +147,7 @@ exports.extractCSS = function(PATHS) {
 
 exports.loadBootstrap = function(paths) {
   console.log("--------------------------- loadBootstrap - called");
-  console.log("loadBootstrap.paths = " + paths);
+  //console.log("loadBootstrap.paths = " + paths);
   // paths = PATHS.bootstrapcss
   return {
     module: {
@@ -220,68 +217,3 @@ exports.devServer = function(options) {
     ]
   };
 }
-
-
-/*==============================*/
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-exports.setupCSS = function(paths) {
-  console.log("--------------------------- setupCSS - called");
-  console.log("paths = " + paths);
-  return {
-    module: {
-      loaders: [
-        {
-          test: /\.css$/,
-          loaders: ['style', 'css'],
-          include: paths
-        }
-      ]
-    }
-  };
-}
-
-
-
-
-
-exports.exposeJQuery = function(PATHS) {
-  console.log("--------------------------- exposeJQuery - called");
-  //console.log("exposeJQuery.paths = " + paths);
-  console.log("resolvejquery = " + require.resolve("jquery"));
-  console.log("paths works or not: " + PATHS.app);
-  return {
-    module: {
-      loaders: [
-        {
-          //test: require.resolve('jquery'),
-          test: /\.js$/,
-          //no good - loader: 'expose?$!expose?jQuery!jquery',
-                    //loader: 'expose?$!expose?jQuery!jquery', //from bootstrap-webpack doc
-          // this on works with no error
-          loader: 'expose?jQuery!expose?$',
-
-          include: PATHS.jquery,
-          exclude: PATHS.nodemodules
-        }
-      ]
-    }
-  }
-}
-*/
-/*
-console.log('** parts.js *******************************************');
-
-console.log('================================================================');
-*/
