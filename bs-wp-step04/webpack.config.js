@@ -39,14 +39,19 @@ const common = {
   // Important! Do not remove '', If you do, imports without
   // an extension won't work anymore!
   resolve: {
-    extensions: ['', '.json', '.js', '.jsx']
+    extensions: ['', '.json', '.js', '.jsx'],
+    alias: { // this is likely in the wrong place. It is only suposed to
+             // be used in production.
+      'react': 'react-lite',
+      'react-dom': 'react-lite'
+    }
   }
 };
 
 var config;
 
 // Detect how npm is run and branch based on that
-if(TARGET ==='start' || !TARGET) {
+if(TARGET === 'build') {
   console.log("--------------------------- $ npm run build - called")
   config = merge(
     common,
@@ -79,7 +84,7 @@ if(TARGET ==='start' || !TARGET) {
   );
 }
 
-if(TARGET === 'build') {
+if(TARGET ==='start' || !TARGET) {
   console.log("--------------------------- $ npm start - called");
   config = merge(
     common,
