@@ -22,9 +22,13 @@ process.env.BABEL_ENV = TARGET;
 // We'll be using the latter form given it's
 // convenient with more complex configurations.
 const common = {
+  // trying to get more build info from webpack
+  debug: true,
+  cache: true,
+  // end
   entry: {
     style: PATHS.style,
-    app: PATHS.app
+    app: PATHS.app,
   },
   output: {
     path: PATHS.build,
@@ -40,11 +44,6 @@ const common = {
   // an extension won't work anymore!
   resolve: {
     extensions: ['', '.json', '.js', '.jsx'],
-    alias: { // this is likely in the wrong place. It is only suposed to
-             // be used in production.
-      'react': 'react-lite',
-      'react-dom': 'react-lite'
-    }
   }
 };
 
@@ -55,6 +54,10 @@ if(TARGET === 'build') {
   console.log("--------------------------- $ npm run build - called")
   config = merge(
     common,
+      parts.dontParse({
+        name: 'react',
+        path: path.join(__dirname, 'node_modules', 'react', 'dist', 'react.min.js')
+      }),
       {
         devtool: 'source-map',
         output: {
@@ -63,13 +66,20 @@ if(TARGET === 'build') {
           // This is used for require.ensure. The setup
           // will work without but this is useful to set.
           chunkFilename: '[chunkhash].js'
+        },
+        resolve: {
+          alias: { // this is likely in the wrong place. It is only suposed to
+                   // be used in production.
+            'react': 'react-lite',
+            'react-dom': 'react-lite'
+          }
         }
       },
-    parts.clean(PATHS.build),
     parts.setFreeVariable(
       'process.env.NODE_ENV',
       'production'
     ),
+    parts.clean(PATHS.build),
     parts.babelES6(PATHS),
     parts.extractBundle({
       name: 'vendor',
@@ -91,7 +101,12 @@ if(TARGET ==='start' || !TARGET) {
       {
         devtool: 'source-map'
       },
+    parts.setFreeVariable(
+      'process.env.NODE_ENV',
+      'development'
+    ),
     //parts.setupCSS(PATHS.style),
+    //parts.bindReactPerf(),
     parts.babelES6(PATHS),
     parts.loadBootstrapJS(PATHS.bootstrapJS),
     parts.loadBootstrap(PATHS.bootstrapCSS),

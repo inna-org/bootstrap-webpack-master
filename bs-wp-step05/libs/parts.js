@@ -2,6 +2,35 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+exports.dontParse = function(options) {
+  const alias = {};
+  alias[options.name] = options.path;
+  return {
+    module: {
+      noParse: [
+        options.path
+      ]
+    },
+    resolve: {
+      alias: alias
+    }
+  };
+}
+
+exports.bindReactPerf = function() {
+  console.log("--------------------------- bindReactPerf - called")
+  return {
+    module: {
+      loaders: [
+        {
+          test: require.resolve('react'),
+          loader: 'expose?React'
+        }
+      ]
+    }
+  }
+}
+
 exports.babelES6 = function(PATHS) {
   console.log("--------------------------- babelES6 - called")
   return {
@@ -14,6 +43,7 @@ exports.babelES6 = function(PATHS) {
           include: PATHS.app,
           query:
           {
+            cacheDirectory: true,
             presets:['react', 'es2015']
           }
         }
@@ -40,8 +70,8 @@ exports.clean = function(path) {
 
 exports.setFreeVariable = function(key, value) {
   console.log("--------------------------- setFreeVariable - called");
-  //console.log("key = " + key);
-  //console.log("value = " + value);
+  console.log("key = " + key);
+  console.log("value = " + value);
   // key = process.env.NODE_ENV
   // value = production
 
@@ -53,7 +83,6 @@ exports.setFreeVariable = function(key, value) {
     ]
   };
 }
-
 
 exports.extractBundle = function(options) {
   console.log("--------------------------- extractBundle - called");

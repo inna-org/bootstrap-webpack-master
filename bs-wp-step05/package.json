@@ -38,7 +38,8 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "purifycss-webpack-plugin": "^2.0.3",
-    "react-lite": "^0.15.17",
+    "react-addons-perf": "^15.3.1",
+    "react-dom": "^15.3.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
@@ -48,6 +49,7 @@
   },
   "dependencies": {
     "jquery": "^3.1.0",
-    "react": "^15.3.0"
+    "react": "^15.3.0",
+    "react-lite": "^0.15.17"
   }
 }

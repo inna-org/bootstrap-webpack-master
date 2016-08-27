@@ -7,6 +7,11 @@ import BootstrapJS from 'bootstrap-webpack!./../bootstrap.config.js';
 //require('./main.css'); file not found
 var $ = require('jquery');
 
+console.log("NODE_ENV = " + process.env.NODE_ENV);
+if(process.env.NODE_ENV !== 'production') {
+  React.Perf = require('react-addons-perf');
+}
+
 var component = require('./component');
 
 $('#div-react').append(component());
